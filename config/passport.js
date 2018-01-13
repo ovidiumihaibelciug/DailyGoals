@@ -1,9 +1,9 @@
 const passport = require('passport');
-const User = require('./models/user.js');
+const User = require('../models/user.js');
 const bcrypt = require('bcryptjs');
-const LocalStrategy = require('local-strategy').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 
-module.exports = (passprt) => {
+module.exports = passport => {
   passport.use(new LocalStrategy((username, password, done) =>{
     let query = { username: username }
     User.findOne(query, (err, user) => {

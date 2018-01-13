@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 const index = require('./routes/index');
 const users = require('./routes/users');
 const config = require('./config/database');
-
+require('./config/passport')(passport)
 const app = express();
 
 mongoose.connect(config.database, {
