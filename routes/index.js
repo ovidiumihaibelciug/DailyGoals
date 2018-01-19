@@ -7,8 +7,12 @@ const passport = require('passport');
 router.use(expressValidator());
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Abcd' });
+router.get('/', (req, res) => {
+  if (req.user) {
+    res.render('index', { title: req.user });
+  } else {
+    res.redirect(200, '/login');
+  }
 });
 /* GET register page. */
 router.get('/register', (req, res) => {
@@ -24,7 +28,8 @@ router.post('/register', (req, res) => {
   const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
-  req.checkBody('username', 'Username is required!').notEmpty();
+  const password2 = req.body.password2;
+  req.checkBody('username', 'User is required!').notEmpty();
   req.checkBody('email', 'Email is required!').notEmpty();
   req.checkBody('email', 'Email is not valid!').isEmail();
   req.checkBody('password', 'Password is required').notEmpty();
@@ -34,14 +39,12 @@ router.post('/register', (req, res) => {
 
   if (errors) {
     console.log(errors);
-    // res.render('auth/register', {
-    //   errors: errors
-    // });
+    res.render('auth/register');
   } else {
     let newUser = new User({
       username: username,
       email: email,
-      password, password,
+      password: password,
     });
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -52,18 +55,19 @@ router.post('/register', (req, res) => {
             console.log(err)
             return;
           } else {
-            res.redirect('/');
+            res.redirect('/login');
           }
         });
       });
     });
   }
 });
+/* POST login page. */
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: 'auth/login',
-    failureFlash: 'false',
-  })(req, res, next)
-})
+    successRedirect: '/goal',
+    failureRedirect: '/register',
+    failureFlash: true,
+  })(req, res, next);
+});
 module.exports = router;
