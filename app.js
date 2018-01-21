@@ -47,10 +47,10 @@ app.get('/*', (req, res, next) => {
   res.locals.user = req.user || null;
   console.log(res.locals.user);
   next();
-}); 
+});
 app.use('/', index);
 app.use('/user', users);
-app.use('/goal', goals);
+app.use('/goals', goals);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
   if (req.user) {
     res.render('index', { title: req.user });
   } else {
-    res.redirect(200, '/login');
+    res.redirect('/login');
   }
 });
 /* GET register page. */
@@ -65,9 +65,15 @@ router.post('/register', (req, res) => {
 /* POST login page. */
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect: '/goal',
+    successRedirect: '/goals',
     failureRedirect: '/register',
     failureFlash: true,
   })(req, res, next);
 });
+router.get('/logout', (req, res, next) => {
+  req.logout();
+  req.flash('success', 'You are logged out');
+  res.redirect('/login');
+});
+
 module.exports = router;

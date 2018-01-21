@@ -1,14 +1,13 @@
 extends ../layout
 
 block content
-  .container
-    h1= title
-    .box  
-      form(method="POST", action="/login")
-        .form-group
-          label Username
-          input.form-control(name="username", type="text")
-        .form-group
-          label Password
-          input.form-control(name="password", type="password")
-        input.btn.btn-success(name="submit", value="Submit", type="submit")
+  h1= title
+  .box  
+    form(method="POST", action="/login")
+      .form-group
+        label Username
+        input.form-control(name="username", type="text")
+      .form-group
+        label Password
+        input.form-control(name="password", type="password")
+      input.btn.btn-success(name="submit", value="Submit", type="submit")

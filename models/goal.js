@@ -11,11 +11,11 @@ const GoalSchema = new Schema({
     required: true,
   },
   user_id: {
-    type: Number,
+    type: String,
     required: true,
   },
   done: {
-    type: Boolean,
+    type: Number,
     requored: false,
   }
 });
