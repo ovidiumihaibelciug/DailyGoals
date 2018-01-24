@@ -1,3 +1,5 @@
+import '../stylesheets/style.scss';
+
 $(document).ready(function() {
     $('.delete-goal').on('click', function(e) {
         $target = $(e.target);
