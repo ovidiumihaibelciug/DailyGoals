@@ -1,19 +1,25 @@
 extends ../layout
 
 block content
-  h1= title
-  .box  
-    form(method="POST", action="/register")
-      .form-group
-        label Username
-        input.form-control(name="username", type="text")
-      .form-group
-        label Email
-        input.form-control(name="email", type="email")
-      .form-group
-        label Password
-        input.form-control(name="password", type="password")
-      .form-group
-        label Confirm password
-        input.form-control(name="password2", type="password")
-        input.btn.btn-success(name="submit", value="Submit", type="submit")
+  .main-register
+    .row
+      .register-box.col-sm-4.col-sm-offset-4 
+          .register-panel
+            .register-title Registration
+            .register-body
+              form(method="POST", action="/register")
+                .form-group.register-field
+                  label Username
+                  input.form-control(name="username", type="text")
+                .form-group.register-field
+                  label Email
+                  input.form-control(name="email", type="email")
+                .form-group.register-field
+                  label Password
+                  input.form-control(name="password", type="password")
+                .form-group.register-field
+                  label Confirm password
+                  input.form-control(name="password2", type="password")
+                .register-btn
+                  input.btn-o.btn-register(name="submit", value="Register", type="submit")
+              a.btn-white(href="/login") Login

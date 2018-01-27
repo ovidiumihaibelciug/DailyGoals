@@ -1,13 +1,4 @@
-body {
-  background: whitesmoke;
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
-
-.messages {
-  margin-top: 20px;  
-}
+@import "_variables";
+@import "main.scss";
+@import "auth.scss";
+@import "goals.scss";

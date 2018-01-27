@@ -1,13 +1,19 @@
 extends ../layout
 
 block content
-  h1= title
-  .box  
-    form(method="POST", action="/login")
-      .form-group
-        label Username
-        input.form-control(name="username", type="text")
-      .form-group
-        label Password
-        input.form-control(name="password", type="password")
-      input.btn.btn-success(name="submit", value="Submit", type="submit")
+  .main-login
+    .row
+      .login-box.col-sm-4.col-sm-offset-4 
+        .login-panel
+          .login-title
+            span Authenticate
+          .login-body
+            form(method="POST", action="/login")
+              .form-group.login-field
+                label Username
+                input.form-control(name="username", type="text")
+              .form-group.login-field
+                label Password
+                input.form-control(name="password", type="password")
+              input.btn-o.btn-login(name="submit", value="Login", type="submit")
+            a.btn-white(href="/register") Register
