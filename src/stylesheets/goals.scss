@@ -1,0 +1,215 @@
+.column-custom {
+    height: 500px !important;
+}
+
+.main-goals {
+    .column-custom {
+        margin-top: 100px;
+        .goal-box {
+            position: absolute;
+            max-height: 400px;
+            max-width: 250px;
+            height: 100%;
+            width: 100%;
+            margin-top: 30px;
+            text-align: center;
+            padding: 50px;
+            border: solid 1px transparent;
+            box-shadow: 5px 3px 0 rgba(0,0,0,0.1);
+            color: white;
+            box-sizing: border-box; 
+            border-radius: 10px;
+            transition: all .3s ease-in-out;
+            transform-origin: right;
+            transform: translateX(-100%) rotateY(90deg);
+            &.active {
+                transform: translateX(0) rotateY(0deg);
+                transition: all .3s ease-in-out;
+            }
+            .goal-title {
+                text-transform: uppercase;
+                font-weight: 500;
+                font-size: 2rem;
+            }
+            .goal-count {
+                font-size: 7rem;
+    
+            }
+            .goal-description {
+                margin-top: 5px;
+                font-size: 1rem;
+                height: 30%;
+            }
+            &:hover {
+                // transform: scale(1.05);
+                // transition: all .1s ease-in-out;
+                .face {
+                    animation: .3s jump ease-in-out 1;
+                }
+                .mouth {
+                    border-bottom-right-radius: 25px;
+                    border-bottom-left-radius: 25px;
+                    transition: all .3s ease;
+                }
+            }
+            .goal-box-icon {
+                font-size: 2rem;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+            &.goal-small {
+                background-image: -webkit-linear-gradient(135deg, hsl(215, 100%, 40%) 30%, hsl(210, 100%, 30%) 90%);
+                text-shadow: 0 1px 0 hsl(215, 100%, 40%);
+            }
+            &.goal-medium {
+                background-image: -webkit-linear-gradient(135deg, hsl(55, 100%, 40%) 30%, hsl(54, 100%, 60%) 90%);
+                text-shadow:  0 1px 0 hsl(55, 100%, 40%);
+            }
+            &.goal-high {
+                background-image: -webkit-linear-gradient(135deg, hsl(100, 100%, 40%) 30%, hsl(100, 100%, 60%) 90%);
+                text-shadow:  0 1px 0 hsl(100, 100%, 40%);
+            }
+            &.goal-brake {
+                background: #b71540;  /* fallback for old browsers */
+                // background: -webkit-linear-gradient(to bottom, #6f0000, #200122);  /* Chrome 10-25, Safari 5.1-6 */
+                // background: linear-gradient(to bottom, #6f0000, #200122); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                // text-shadow:  0 1px 0 hsl(5, 100%, 40%);
+            }
+        }
+        
+    }
+    
+    .goal-details {
+        position: absolute;
+        top: 0;
+        display: inline-block;
+        margin-top: 10%;
+        max-height: 400px;
+        max-width: 250px;
+        height: 100%;
+        width: 100%;
+        background-color: white;
+        border: 1px solid transparent;
+        border-radius: 10px;
+        box-shadow: 1px 1px 1px 1px rgba(0,0,0,.1);
+        box-sizing: border-box;
+        transition: all .3s ease-in-out;
+        transform-origin: left;
+        transform: translateX(100%) rotateY(90deg);
+        &.active {
+            transform-origin: left;
+            transform: translateX(0) rotateY(0deg);
+            transition: all .3s ease-in-out !important;
+        }
+        .goal-details-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            box-sizing: border-box;
+            padding: 5px;
+            color: rgba(0,0,0,.4);
+            font-size: 2.3rem;
+            // border: 2px solid rgba(0,0,0,.4);
+            // border-radius: 50%;
+        }
+        .goal-title {
+            text-align: center;
+            margin-top: 20%;
+            font-size: 2.5rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: rgba(0,0,0,.5);
+        }
+        .goal-description {
+            text-align: center;
+            color: rgba(0,0,0,.4);
+            padding: 10px;
+            word-wrap: break-word;
+            height: 60%;
+        }
+        .goal-count {
+            text-align: center;
+            font-size: 5rem;
+            color: rgba(0,0,0,.5);
+        }
+     }
+    }
+
+
+ .face {
+    height: 100px;
+    width: 100px;
+    background-color: white;
+    border-radius: 100%;
+    margin-left: 15%;
+    margin-bottom: 1rem;
+    .eye {
+        height: 20px;
+        width: 20px;
+        border-radius: 10px;
+        position: absolute;
+        background-color: #b71540;
+        &.right-eye {
+            top: 70px;
+            left: 130px;
+        }
+        &.left-eye {
+            top: 70px;
+            left: 90px;
+        }
+    }
+ }
+ .mouth {
+    height: 25px;
+    width: 50px;
+    position: absolute;
+    top: 110px;
+    left: 95px;
+    display: block;
+    &.smile {
+        border-bottom-right-radius: 25px;
+        border-bottom-left-radius: 25px;
+        background-color: #4cd137;
+    }
+    &.poker {
+        top: 115px;
+        height: 10px;
+        border-bottom: 3px solid hsl(55, 100%, 40%) !important;
+        border-radius: 100%;
+        background-color: white;
+    }
+    &.sad {
+        top: 115px !important;
+        border-top: 3px solid hsl(215, 100%, 40%) !important;
+        border-radius: 30%;
+        background-color: white;
+    }
+    &.brake {
+        top: 115px !important;
+        border-top: 3px solid #b71540 !important;
+        border-radius: 50%;
+        background-color: white;
+    }
+ }
+
+ .h-face {
+     .eye {
+        background-color: #4cd137;
+     }
+ }
+ .p-face {
+     .eye {
+         background-color: hsl(55, 100%, 40%);
+     }
+ }
+ .s-face {
+    .eye {
+        background-color: hsl(215, 100%, 40%);
+    }
+ }
+ .b-face {
+    .eye {
+        background-color: #b71540;
+    }
+ }

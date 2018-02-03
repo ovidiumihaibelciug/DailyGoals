@@ -23,7 +23,7 @@
     "express-session": "^1.15.6",
     "express-validator": "^4.3.0",
     "extract-text-webpack-plugin": "^3.0.2",
-    "mongoose": "^4.13.9",
+    "mongoose": "^4.13.10",
     "morgan": "~1.9.0",
     "node-sass": "^4.7.2",
     "passport": "^0.4.0",

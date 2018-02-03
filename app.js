@@ -8,15 +8,14 @@ const passport     = require('passport');
 const mongoose     = require('mongoose');
 const session      = require('express-session');
 
-const index  = require('./routes/index');
-const users  = require('./routes/users');
-const goals  = require('./routes/goals');
 const config = require('./config/database');
 const app    = express();
 
 mongoose.connect(config.database, {
   useMongoClient: true,
 });
+
+// mongoose.Promise = global.Promise; // for Deprecation Warning
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -48,8 +47,10 @@ app.get('/*', (req, res, next) => {
   console.log(res.locals.user);
   next();
 });
+
+const index  = require('./routes/index');
+const goals  = require('./routes/goals');
 app.use('/', index);
-app.use('/user', users);
 app.use('/goals', goals);
 
 // catch 404 and forward to error handler

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Goal = require('../models/goal');
+let Goal = require('../models/goal');
 
 /* GET all goals listing. */
 router.get('/', (req, res) => {
@@ -19,37 +19,70 @@ router.get('/', (req, res) => {
     req.flash('danger', 'You have to login');
     res.redirect('/login');
   }
+  // let goals = [
+  //   {
+  //     id: "1",
+  //     title: "Lorem Ipsum",
+  //     description: "Lorem Ipsum dolor ..",
+  //     streak: 40
+  //   },
+  //   {
+  //     id: "2",
+  //     title: "Lorem Ipsum",
+  //     description: "Lorem Ipsum dolor ..",
+  //     streak: 5
+  //   },
+  //   {
+  //     id: "3",
+  //     title: "Lorem Ipsum",
+  //     description: "Lorem Ipsum dolor asbdajbsdjahbsdjahbsdba jsdba bsdjba jsbdja bsdajbs djabsdjbajsdbajsbhdajsbdjabsdabdjabsjd",
+  //     streak: 0
+  //   },
+  //   {
+  //     id: "4",
+  //     title: "Lorem Ipsum",
+  //     description: "Lorem Ipsum dolor ..",
+  //     streak: 90
+  //   }
+  // ];
+  // res.render('goal/all', {
+  //   title: 'Goals',
+  //   goals: goals,
+  // });
 });
 
-router.get('/add', (req, res) => {
-  res.render('goal/add', {
-    title: 'Add goals'
-  });
+router.get('/add', ensuiteAuth, (req, res) => {
+  res.render('goal/add');
 });
 
 router.post('/add', (req, res) => {
-  const title = req.body.title;
-  const description = req.body.description;
+  
   req.checkBody('title', 'Title is required').notEmpty();
   req.checkBody('description', 'Description is required').notEmpty();
+  
+  let errors = req.validationErrors();
 
-  let goal = new Goal();
-  goal.title = title;
-  goal.description = description;
-  goal.user_id = req.user._id;
-  goal.done = 0;
-  goal.save(err => {
-    if (err) {
-      console.log(err)
-    } else {
-      res.redirect('/goals');
-    }
-  })
+  if(errors){
+    res.render('login');
+  } else {
+    let goal = new Goal();
+    goal.title = req.body.title;
+    goal.description = req.body.description;
+    goal.user_id = req.user._id;
+    goal.streak = 0;
+    goal.save(err => {
+      if (err) {
+        console.log('123')
+      } else {
+        res.redirect('/goals');
+      }
+    })
+  }
 });
 
 router.get('/edit/:id', (req, res) => {
   let query = { _id: req.params.id };
-  Goal.findOne(query, (err, goal) => {
+  Goal.findById(req.params.id, (err, goal) => {
     if (err) {
       console.log(err);
     } else {
@@ -77,7 +110,7 @@ router.post('/edit/:id', (req, res) => {
 router.delete('/delete/:id', (req, res) => {
   if(!req.user._id){
     res.status(500).send();
-  }
+  }fb
 
   let query = {_id:req.params.id}
 
@@ -98,7 +131,7 @@ router.delete('/delete/:id', (req, res) => {
 
 router.get('/:id', (req, res) => {
   let query = { _id: req.params.id }
-  Goal.findOne(query, (err, goal) => {
+  Goal.findById(req.params.id, (err, goal) => {
     if (err) {
       console.log(err);
     } else {

@@ -2,7 +2,7 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='main.css')
+    link(rel='stylesheet', href='/main.css')
     link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.css')
   body
     if user
@@ -18,7 +18,10 @@ html
           #navbar.navbar-collapse.collapse
             ul.nav.navbar-nav.navbar-right
               li 
+                a(href="/goals/add") Add
+              li 
                 a(href="/logout") Log out
+
     != messages('message', locals)
     if errors
       each error, i in errors
@@ -26,4 +29,4 @@ html
     block content
     script(src="/bower_components/jquery/dist/jquery.js")
     script(src="/bower_components/bootstrap/dist/js/bootstrap.js")
-    script(src="bundle.js")
+    script(src="/bundle.js")

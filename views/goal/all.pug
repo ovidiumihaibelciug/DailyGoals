@@ -1,9 +1,57 @@
 extends ../layout
 
 block content
-  h1= title
-  ul
-    each goal, index in goals 
-      li 
-        a(href="goals/" + goal.id )= goal.title
-        i.glyphicon.glyphicon-option-vertical
+  .main-goals.container
+    .row
+      each goal, index in goals
+        .col-sm-3.column-custom
+          if goal.streak <= 0
+            .goal-box.goal-brake(data-index=index).active
+              .goal-box-icon
+                .glyphicon.glyphicon-info-sign
+              .face.b-face
+                .eye.left-eye
+                .eye.right-eye
+                .mouth.brake        
+              .goal-title= goal.title
+              .goal-description= goal.description
+              .goal-count= goal.streak
+          else if goal.streak <= 10
+            .goal-box.goal-small(data-index=index).active
+              .goal-box-icon
+                .glyphicon.glyphicon-info-sign
+              .face.s-face
+                .eye.left-eye
+                .eye.right-eye
+                .mouth.sad        
+              .goal-title= goal.title
+              .goal-description= goal.description
+              .goal-count= goal.streak
+          else if goal.streak <=50
+            .goal-box.goal-medium(data-index=index).active
+              .goal-box-icon
+                .glyphicon.glyphicon-info-sign
+              .face.p-face
+                .eye.left-eye
+                .eye.right-eye
+                .mouth.poker        
+              .goal-title= goal.title
+              .goal-description= goal.description
+              .goal-count= goal.streak
+          else
+            .goal-box.goal-high(data-index=index).active
+              .goal-box-icon
+                .glyphicon.glyphicon-info-sign
+              .face.h-face
+                .eye.left-eye
+                .eye.right-eye
+                .mouth.smile        
+              .goal-title= goal.title
+              .goal-description= goal.description
+              .goal-count= goal.streak
+          .goal-details(data-index=index)
+            .goal-details-icon
+              .glyphicon.glyphicon-circle-arrow-left
+            .goal-title= goal.title
+            .goal-description= goal.description
+            .goal-count= goal.streak

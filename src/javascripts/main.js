@@ -18,3 +18,31 @@ $(document).ready(function() {
         });
     });
 })
+function showDetails(e) {
+    const index = this.parentNode.dataset.index;
+    
+    const firstPart = document.querySelector(`.goal-box[data-index="${index}"]`);
+    const secondPart = document.querySelector(`.goal-details[data-index="${index}"]`);
+
+    firstPart.classList.remove('active');
+    secondPart.classList.add('active');
+}
+function hideDetails(e) {
+    const index = this.parentNode.dataset.index;
+    
+    const firstPart = document.querySelector(`.goal-box[data-index="${index}"]`);
+    const secondPart = document.querySelector(`.goal-details[data-index="${index}"]`);
+
+    firstPart.classList.add('active');
+    secondPart.classList.remove('active');
+}
+
+let goalBoxIcons = document.querySelectorAll('.goal-box-icon');
+let goalDetailsIcons = document.querySelectorAll('.goal-details-icon');
+
+goalBoxIcons.forEach(icon => {
+    icon.addEventListener('click', showDetails);
+});
+goalDetailsIcons.forEach(icon => {
+    icon.addEventListener('click', hideDetails);
+});
