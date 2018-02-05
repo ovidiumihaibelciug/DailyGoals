@@ -6,10 +6,10 @@ block content
       each goal, index in goals
         .col-sm-3.column-custom
           if goal.streak <= 0
-            .goal-box.goal-brake(data-index=index).active
+            .goal-box.goal-brake(data-index=index data-id=goal.id).active
               .goal-box-icon
                 .glyphicon.glyphicon-info-sign
-              .face.b-face
+              .face.b-face(data-index=index data-id=goal.id)
                 .eye.left-eye
                 .eye.right-eye
                 .mouth.brake        
@@ -17,10 +17,10 @@ block content
               .goal-description= goal.description
               .goal-count= goal.streak
           else if goal.streak <= 10
-            .goal-box.goal-small(data-index=index).active
+            .goal-box.goal-small(data-index=index data-id=goal.id).active
               .goal-box-icon
                 .glyphicon.glyphicon-info-sign
-              .face.s-face
+              .face.s-face(data-index=index data-id=goal.id)
                 .eye.left-eye
                 .eye.right-eye
                 .mouth.sad        
@@ -28,10 +28,10 @@ block content
               .goal-description= goal.description
               .goal-count= goal.streak
           else if goal.streak <=50
-            .goal-box.goal-medium(data-index=index).active
+            .goal-box.goal-medium(data-index=index data-id=goal.id).active
               .goal-box-icon
                 .glyphicon.glyphicon-info-sign
-              .face.p-face
+              .face.p-face(data-index=index data-id=goal.id)
                 .eye.left-eye
                 .eye.right-eye
                 .mouth.poker        
@@ -39,17 +39,17 @@ block content
               .goal-description= goal.description
               .goal-count= goal.streak
           else
-            .goal-box.goal-high(data-index=index).active
+            .goal-box.goal-high(data-index=index data-id=goal.id).active
               .goal-box-icon
                 .glyphicon.glyphicon-info-sign
-              .face.h-face
+              .face.h-face(data-index=index data-id=goal.id)
                 .eye.left-eye
                 .eye.right-eye
                 .mouth.smile        
               .goal-title= goal.title
               .goal-description= goal.description
               .goal-count= goal.streak
-          .goal-details(data-index=index)
+          .goal-details(data-index=index data-id=goal.id)
             .goal-details-icon
               .glyphicon.glyphicon-circle-arrow-left
             .goal-title= goal.title

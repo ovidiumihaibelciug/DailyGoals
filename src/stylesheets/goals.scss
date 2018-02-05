@@ -22,23 +22,30 @@
             transition: all .3s ease-in-out;
             transform-origin: right;
             transform: translateX(-100%) rotateY(90deg);
+            z-index: 1000;
             &.active {
                 transform: translateX(0) rotateY(0deg);
                 transition: all .3s ease-in-out;
+            }
+            &.active-click {
+                transform: translateY(-5px);
             }
             .goal-title {
                 text-transform: uppercase;
                 font-weight: 500;
                 font-size: 2rem;
+                z-index: 1;
             }
             .goal-count {
                 font-size: 7rem;
+                z-index: 1;
     
             }
             .goal-description {
                 margin-top: 5px;
                 font-size: 1rem;
                 height: 30%;
+                z-index: 1;
             }
             &:hover {
                 // transform: scale(1.05);
@@ -52,6 +59,11 @@
                     transition: all .3s ease;
                 }
             }
+            &.active-click {
+            background-color: red;
+            margin-top: 10px;
+            transition: margin .3s ease-out;
+        }
             .goal-box-icon {
                 font-size: 2rem;
                 position: absolute;

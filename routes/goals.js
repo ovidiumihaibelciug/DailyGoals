@@ -19,36 +19,6 @@ router.get('/', (req, res) => {
     req.flash('danger', 'You have to login');
     res.redirect('/login');
   }
-  // let goals = [
-  //   {
-  //     id: "1",
-  //     title: "Lorem Ipsum",
-  //     description: "Lorem Ipsum dolor ..",
-  //     streak: 40
-  //   },
-  //   {
-  //     id: "2",
-  //     title: "Lorem Ipsum",
-  //     description: "Lorem Ipsum dolor ..",
-  //     streak: 5
-  //   },
-  //   {
-  //     id: "3",
-  //     title: "Lorem Ipsum",
-  //     description: "Lorem Ipsum dolor asbdajbsdjahbsdjahbsdba jsdba bsdjba jsbdja bsdajbs djabsdjbajsdbajsbhdajsbdjabsdabdjabsjd",
-  //     streak: 0
-  //   },
-  //   {
-  //     id: "4",
-  //     title: "Lorem Ipsum",
-  //     description: "Lorem Ipsum dolor ..",
-  //     streak: 90
-  //   }
-  // ];
-  // res.render('goal/all', {
-  //   title: 'Goals',
-  //   goals: goals,
-  // });
 });
 
 router.get('/add', ensuiteAuth, (req, res) => {
@@ -78,6 +48,26 @@ router.post('/add', (req, res) => {
       }
     })
   }
+});
+
+router.post('/increment/:id', (req, res) => {
+  let query = { _id: req.params.id };
+
+  Goal.findById(query, (err, goal) => {
+    if (err) {
+      console.log(err);
+    } else {
+      goal.streak = goal.streak + 1;
+      Goal.update(query, goal, (err, res) => {
+        console.log(goal)
+        if (err) {
+          console.log(err);
+        } else {
+          req.flash('success', 'asd');
+        }
+      })
+    }
+  });
 });
 
 router.get('/edit/:id', (req, res) => {
