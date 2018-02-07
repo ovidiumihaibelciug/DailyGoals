@@ -1,7 +1,8 @@
 extends ../layout
 
 block content
-  .main-goals.container
+  .main-goals.container.goal-crud
+    h1 Add a goal
     form(method="POST", action="/goals/add")
       .form-group
         label Title

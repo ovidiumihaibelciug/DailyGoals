@@ -50,25 +50,25 @@ router.post('/add', (req, res) => {
   }
 });
 
-router.post('/increment/:id', (req, res) => {
-  let query = { _id: req.params.id };
+// router.post('/increment/:id', (req, res) => {
+//   let query = { _id: req.params.id };
 
-  Goal.findById(query, (err, goal) => {
-    if (err) {
-      console.log(err);
-    } else {
-      goal.streak = goal.streak + 1;
-      Goal.update(query, goal, (err, res) => {
-        console.log(goal)
-        if (err) {
-          console.log(err);
-        } else {
-          req.flash('success', 'asd');
-        }
-      })
-    }
-  });
-});
+//   Goal.findById(query, (err, goal) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       goal.streak = goal.streak + 1;
+//       Goal.update(query, goal, (err, res) => {
+//         console.log(goal)
+//         if (err) {
+//           console.log(err);
+//         } else {
+//           req.flash('success', 'asd');
+//         }
+//       })
+//     }
+//   });
+// });
 
 router.get('/edit/:id', (req, res) => {
   let query = { _id: req.params.id };
@@ -140,4 +140,12 @@ function ensuiteAuth(req, res, next) {
   }
 }
 
-module.exports = router;
+module.exports = function(io) {
+  var app = require('express');
+
+  io.on('connection', function(socket) { 
+    console.log('connection');
+  });
+
+  return router;
+}

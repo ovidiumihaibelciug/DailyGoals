@@ -1,5 +1,25 @@
 import '../stylesheets/style.scss';
 
+/*
+* Socket.io setup - Make Connection
+*/
+let socket = io.connect('http://localhost:3000');
+
+const faces = document.querySelectorAll('.face');
+
+
+
+faces.forEach(face => face.addEventListener('click', function () {
+    const id = face.dataset.id;
+    console.log(id);
+    socket.emit('increment', {
+        goal: id
+    });
+}));
+
+
+
+// TODO: vanilla js (daca n-am ce face cu viata mea)
 $(document).ready(function() {
     $('.delete-goal').on('click', function(e) {
         $target = $(e.target);
@@ -17,21 +37,21 @@ $(document).ready(function() {
         });
     });
     // trebuie alta metoda (sa nu trebuiasca neaparat sa dea refresh)
-    $('.face').on('click', function(e) {
-        let $target = $(e.target);
-        const id = $target.attr('data-id'); // db index
-        $.ajax({
-            type: 'POST',
-            url: '/goals/increment/'+id,
-            beforeSend() {
-                window.location.href = '/goals';
-            },
-            error(err) {
-                console.log(err);
-            },
-        });
-    });
-})
+    // $('.face').on('click', function(e) {
+    //     let $target = $(e.target);
+    //     const id = $target.attr('data-id'); // db index
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: '/goals/increment/'+id,
+    //         beforeSend() {
+    //             window.location.href = '/goals';
+    //         },
+    //         error(err) {
+    //             console.log(err);
+    //         },
+    //     });
+    // });
+});
 function toggleDetails(e) {
     const index = this.parentNode.dataset.index;
     
@@ -54,7 +74,6 @@ function toggleAnimation(e) {
 
 const goalBoxIcons = document.querySelectorAll('.goal-box-icon');
 const goalDetailsIcons = document.querySelectorAll('.goal-details-icon');
-const faces = document.querySelectorAll('.face'); 
 
 goalBoxIcons.forEach(icon => {
     icon.addEventListener('click', toggleDetails);

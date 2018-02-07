@@ -1,6 +1,7 @@
 extends ../layout
 
 block content
-  div= goal
-  a.btn.btn-warning(href="/goals/edit/" + goal._id) Edit
-  a.btn.btn-danger.delete-goal(href="#", data-id=goal._id) Delete
+  .goal-crud
+    div= goal
+    a.btn.btn-warning(href="/goals/edit/" + goal._id) Edit
+    a.btn.btn-danger.delete-goal(href="#", data-id=goal._id) Delete

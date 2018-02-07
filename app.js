@@ -7,9 +7,19 @@ const bodyParser   = require('body-parser');
 const passport     = require('passport');
 const mongoose     = require('mongoose');
 const session      = require('express-session');
+const socket_io    = require('socket.io');
 
 const config = require('./config/database');
+
 const app    = express();
+
+let io = socket_io();
+app.io = io;
+
+io.on( "connection", function( socket ) {
+  console.log( "A user connected" );
+});
+
 
 mongoose.connect(config.database, {
   useMongoClient: true,
@@ -41,6 +51,9 @@ app.use(function (req, res, next) {
 require('./config/passport')(passport)
 app.use(passport.initialize());
 app.use(passport.session());
+/*
+* Socket setup
+*/ 
 
 app.get('/*', (req, res, next) => {
   res.locals.user = req.user || null;
@@ -48,8 +61,8 @@ app.get('/*', (req, res, next) => {
   next();
 });
 
-const index  = require('./routes/index');
-const goals  = require('./routes/goals');
+const index  = require('./routes/index')(io);
+const goals  = require('./routes/goals')(io);
 app.use('/', index);
 app.use('/goals', goals);
 

@@ -76,4 +76,12 @@ router.get('/logout', (req, res, next) => {
   res.redirect('/login');
 });
 
-module.exports = router;
+module.exports = function(io) {
+  var app = require('express');
+
+  io.on('connection', function(socket) { 
+    console.log('connection');
+  });
+  console.log('adas');
+  return router;
+}

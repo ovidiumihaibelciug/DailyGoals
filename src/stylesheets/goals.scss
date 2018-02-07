@@ -2,6 +2,10 @@
     height: 500px !important;
 }
 
+.goal-crud {
+    margin-top: 5%;
+}
+
 .main-goals {
     .column-custom {
         margin-top: 100px;
@@ -60,15 +64,23 @@
                 }
             }
             &.active-click {
-            background-color: red;
-            margin-top: 10px;
-            transition: margin .3s ease-out;
-        }
+                background-color: red;
+                margin-top: 10px;
+                transition: margin .3s ease-out;
+            }
             .goal-box-icon {
                 font-size: 2rem;
                 position: absolute;
                 top: 1rem;
                 right: 1rem;
+                cursor: pointer;
+            }
+            .goal-edit-icon {
+                color: white;
+                font-size: 2rem;
+                position: absolute;
+                top: 1rem;
+                left: 1rem;
             }
             &.goal-small {
                 background-image: -webkit-linear-gradient(135deg, hsl(215, 100%, 40%) 30%, hsl(210, 100%, 30%) 90%);
@@ -122,8 +134,7 @@
             padding: 5px;
             color: rgba(0,0,0,.4);
             font-size: 2.3rem;
-            // border: 2px solid rgba(0,0,0,.4);
-            // border-radius: 50%;
+            cursor: pointer;
         }
         .goal-title {
             text-align: center;
